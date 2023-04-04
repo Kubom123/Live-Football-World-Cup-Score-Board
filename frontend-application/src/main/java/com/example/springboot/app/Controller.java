@@ -1,9 +1,6 @@
 package com.example.springboot.app;
 
 import com.example.springboot.components.ScoreBoard;
-import org.springframework.http.MediaType;
-import org.springframework.ui.Model;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 

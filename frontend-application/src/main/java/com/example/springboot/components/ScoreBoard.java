@@ -45,8 +45,8 @@ public class ScoreBoard {
 
     public List<Game> getSummary() {
         List<Game> sortedGames = new ArrayList<>(games);
-        sortedGames.sort(Comparator.comparing(Game::getTotalScore).reversed()
-                .thenComparing(Game::getStartTime));
+        sortedGames.sort(Comparator.comparing(Game::getTotalScore)
+                .thenComparing(Game::getStartTime).reversed());
         return sortedGames;
     }
 
