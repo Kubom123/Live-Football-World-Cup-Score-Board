@@ -1,7 +1,9 @@
 package com.example.springboot.app;
 
 import com.example.springboot.components.ScoreBoard;
+import org.springframework.http.MediaType;
 import org.springframework.ui.Model;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,6 +29,21 @@ public class Controller {
 	@GetMapping("/finish-game/{gameIndex}")
 	public ModelAndView finishGame(@PathVariable int gameIndex){
 		scoreBoard.finishGame(gameIndex);
+
+		return new ModelAndView("redirect:/");
+	}
+
+	@GetMapping("/start-new-game-menu")
+	public ModelAndView startNewGameMenu(){
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("NewGame");
+
+		return modelAndView;
+	}
+
+	@GetMapping(value="/start-new-game")
+	public ModelAndView startNewGame(@RequestParam("homeName") String homeName, @RequestParam("awayName") String awayName){
+        scoreBoard.startGame(homeName, awayName);
 
 		return new ModelAndView("redirect:/");
 	}

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>Start new game</h1>
+<form  th:action="@{'/start-new-game'}">
+    <label for="homeName">Home team:</label><br>
+    <input type="text" id="homeName" name="homeName"><br>
+    <label for="awayName">Away team:</label><br>
+    <input type="text" id="awayName" name="awayName"><br><br>
+    <input type="submit" value="start game" style="border: 2px solid #111111;">
+</form>
+</body>
+</html>
