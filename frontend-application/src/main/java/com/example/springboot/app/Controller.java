@@ -17,8 +17,6 @@ public class Controller {
 
 	@GetMapping("/")
 	public ModelAndView summary(){
-		scoreBoard.startGame("nasi","vasi");
-
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("games",scoreBoard.getSummary());
 		modelAndView.setViewName("ScoreBoard");
@@ -44,6 +42,22 @@ public class Controller {
 	@GetMapping(value="/start-new-game")
 	public ModelAndView startNewGame(@RequestParam("homeName") String homeName, @RequestParam("awayName") String awayName){
         scoreBoard.startGame(homeName, awayName);
+
+		return new ModelAndView("redirect:/");
+	}
+
+	@GetMapping("/update-score-menu/{gameIndex}")
+	public ModelAndView updateScoreMenu(@PathVariable int gameIndex){
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("UpdateScore");
+		modelAndView.addObject("game",scoreBoard.findGameByGameIndex(gameIndex));
+
+		return modelAndView;
+	}
+
+	@GetMapping(value="/update-score/{gameIndex}")
+	public ModelAndView startNewGame(@PathVariable int gameIndex, @RequestParam("homeNameScore") int homeNameScore, @RequestParam("awayNameScore") int awayNameScore){
+		scoreBoard.updateScore(gameIndex,homeNameScore,awayNameScore);
 
 		return new ModelAndView("redirect:/");
 	}

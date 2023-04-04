@@ -17,23 +17,36 @@ public class ScoreBoard {
     }
 
     public void updateScore(int gameIndex, int homeScore, int awayScore) {
-        Game game = games.get(gameIndex);
+        Game game = games.get(findGameArrayListIndexByGameIndex(gameIndex));
         game.setScore(homeScore, awayScore);
     }
 
     public void finishGame(int gameIndex) {
-        for (Game game:games){
-            if(game.getGameIndex()==gameIndex){
-                games.remove(game);
-                break;
+        games.remove(findGameArrayListIndexByGameIndex(gameIndex));
+    }
+
+    public int findGameArrayListIndexByGameIndex(int gameIndex) {
+        for (int i = 0; i < games.size(); i++) {
+            if (games.get(i).getGameIndex() == gameIndex) {
+                return i;
             }
         }
+        throw new RuntimeException("Array list index not found.");
+    }
+
+    public Game findGameByGameIndex(int gameIndex) {
+        for (Game game:games) {
+            if (game.getGameIndex() == gameIndex) {
+                return game;
+            }
+        }
+        throw new RuntimeException("Game not found.");
     }
 
     public List<Game> getSummary() {
         List<Game> sortedGames = new ArrayList<>(games);
         sortedGames.sort(Comparator.comparing(Game::getTotalScore).reversed()
-                .thenComparing(Game::getStartTime).reversed());
+                .thenComparing(Game::getStartTime));
         return sortedGames;
     }
 

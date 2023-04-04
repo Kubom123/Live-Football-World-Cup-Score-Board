@@ -9,7 +9,7 @@
     <tbody>
     <tr th:each="game: ${games}">
         <td th:text="${game.toString()}" style="width: 300px; x-overflow: auto; text-align: center;"></td>
-        <td class="table-body-button" style="border: 2px solid #111111;"><a th:href="@{'/update-score/'+${game.getGameIndex()}}">Update score</a></td>
+        <td class="table-body-button" style="border: 2px solid #111111;"><a th:href="@{'/update-score-menu/'+${game.getGameIndex()}}">Update score</a></td>
         <td class="table-body-button" style="border: 2px solid #111111;"><a th:href="@{'/finish-game/'+${game.getGameIndex()}}">Finish game</a></td>
     </tr>
     </tbody>

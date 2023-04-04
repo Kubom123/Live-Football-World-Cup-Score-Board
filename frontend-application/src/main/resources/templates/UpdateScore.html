@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>Update score</h1>
+<p th:text="${game.toString()}" style="width: 300px; x-overflow: auto; text-align: center;"></p>
+<form  th:action="@{'/update-score/' + ${game.getGameIndex()}}">
+    <label for="homeNameScore">New Home team score:</label><br>
+    <input type="number" id="homeNameScore" name="homeNameScore" required="required" min="0"><br>
+    <label for="awayNameScore">New Away team score:</label><br>
+    <input type="number" id="awayNameScore" name="awayNameScore" required="required" min="0"><br><br>
+    <input type="submit" value="Update score" style="border: 2px solid #111111;">
+</form>
+</body>
+</html>
